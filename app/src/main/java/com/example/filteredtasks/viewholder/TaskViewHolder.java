@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.taskmanager.R;
-import com.example.taskmanager.interfaces.IOnClickListener;
-import com.example.taskmanager.models.Task;
+import com.example.filteredtasks.R;
+import com.example.filteredtasks.interfaces.IOnClickListener;
+import com.example.filteredtasks.models.Task;
 import com.squareup.picasso.Picasso;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder  {
@@ -33,15 +33,15 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
         });
     }
 
-    public void onBind(Task task,int taskId){
-        taskDescription.setText(task.getDecriprion());
-        taskTitle.setText(task.getTitle());
-        Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getImageId())+".jpg").
+    public void onBind(Task task, int taskId){
+        taskDescription.setText(task.getMessage());
+        taskTitle.setText(task.getMessage());
+        Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getMessage())+".jpg").
                 resize(150, 150)
                 .centerCrop().into(taskImage);
 
         Log.d("TaskManagerLog","Image URL:  http://i.imgur.com/"+
-                String.valueOf(task.getImageId())+".jpg");
+                String.valueOf(task.getMessage())+".jpg");
         this.taskId=taskId;
     }
 

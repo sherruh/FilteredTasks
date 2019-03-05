@@ -1,21 +1,21 @@
 package com.example.filteredtasks.models;
 
 public class Task {
-    private int inWork;
-    private int done;
+    private boolean inWork;
+    private boolean done;
     private String message;
 
-    public Task(int inWork, int done, String message) {
+    public Task(boolean inWork, boolean done, String message) {
         this.inWork = inWork;
         this.done = done;
         this.message = message;
     }
 
-    public int getInWork() {
+    public boolean getInWork() {
         return inWork;
     }
 
-    public int getDone() {
+    public boolean getDone() {
         return done;
     }
 

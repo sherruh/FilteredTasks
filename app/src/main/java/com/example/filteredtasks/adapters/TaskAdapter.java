@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.filteredtasks.R;
+import com.example.filteredtasks.interfaces.IOnClickListener;
+import com.example.filteredtasks.models.Task;
 import com.example.filteredtasks.viewholder.TaskViewHolder;
-import com.example.taskmanager.R;
-import com.example.taskmanager.interfaces.IOnClickListener;
-import com.example.taskmanager.models.Task;
-import com.example.taskmanager.viewholder.TaskViewHolder;
+
 
 import java.util.ArrayList;
 
