@@ -45,5 +45,4 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
         this.taskId=taskId;
     }
 
-
 }

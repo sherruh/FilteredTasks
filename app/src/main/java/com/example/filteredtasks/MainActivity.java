@@ -11,10 +11,13 @@ import com.example.filteredtasks.fragments.TaskViewFragment;
 import com.example.filteredtasks.interfaces.IOnClickListener;
 import com.example.filteredtasks.models.Task;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IOnClickListener {
-    ArrayList<Task> tasks;
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     RecyclerViewFragment recyclerViewFragment;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickListener 
         recyclerViewFragment.setIOnClicklistener(this);
         fragmentTransaction.add(R.id.frame_layout,recyclerViewFragment);
         fragmentTransaction.commit();
+
+        recyclerViewFragment.createJSondata();
     }
 
     @Override
@@ -46,4 +51,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickListener 
         fragmentTransaction.add(R.id.frame_layout,taskViewFragment);
         fragmentTransaction.addToBackStack(null).commit();
     }
+
+
 }

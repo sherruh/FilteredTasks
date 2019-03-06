@@ -1,8 +1,8 @@
 package com.example.filteredtasks.models;
 
-import enums.ProblemType;
-import enums.Region;
-import enums.Technology;
+import com.example.filteredtasks.enums.ProblemType;
+import com.example.filteredtasks.enums.Region;
+import com.example.filteredtasks.enums.Technology;
 
 public class Task {
     private boolean inWork;
