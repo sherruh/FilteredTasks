@@ -55,14 +55,15 @@ public class RecyclerViewFragment extends Fragment  {
         taskAdapter=new TaskAdapter(tasks,miOnClickListener );
         recyclerViewTasks.setAdapter(taskAdapter);
         recyclerViewTasks.setItemAnimator(new DefaultItemAnimator());
-        jSonWorker=new JSonWorker();
-        jSonWorker.readJSondata(tasks);
+
     }
 
     public void setTasks() {
        tasks=new ArrayList<>();
        tasks.add(new Task(false,false,"Nrn_40000","Traffic 10%", ProblemType.EMERGENCY, Technology.UMTS, Region.CHUY));
        tasks.add(new Task(false,false,"Nrn_40001","Traffic 70%", ProblemType.EMERGENCY, Technology.GSM, Region.CHUY));
+       jSonWorker=new JSonWorker();
+       jSonWorker.readJSondata(tasks);
     }
 
     public void addTask(Task task){

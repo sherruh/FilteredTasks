@@ -1,9 +1,13 @@
 package com.example.filteredtasks.viewholder;
 
+import android.annotation.SuppressLint;
+import android.arch.lifecycle.AndroidViewModel;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +20,30 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
     TextView taskTitle;
     TextView taskDescription;
     ImageView taskImage;
+    CheckBox checkBoxInWork;
     int taskId;
     private IOnClickListener miOnClickListener;
 
-    public TaskViewHolder(@NonNull View itemView, IOnClickListener iOnClickListener) {
+    public TaskViewHolder(@NonNull final View itemView, IOnClickListener iOnClickListener) {
         super(itemView);
         taskTitle=itemView.findViewById(R.id.vh_task_Title);
         taskDescription=itemView.findViewById(R.id.textOfTask);
         taskImage=itemView.findViewById(R.id.imageView);
         miOnClickListener=iOnClickListener;
+        checkBoxInWork=itemView.findViewById(R.id.check_bx_in_work);
+        checkBoxInWork.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                if (checkBoxInWork.isChecked()){
+                    itemView.setBackgroundResource(R.color.colorPrimaryDark);
+                    Log.d("MyAppLog","clicked on checkBox");
+                }else {
+                    itemView.setBackgroundResource(R.color.colorAccent);
+                    Log.d("MyAppLog","clicked unchecked on checkBox");
+                }
+            }
+        });
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +58,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
         Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getMessage())+".jpg").
                 resize(150, 150)
                 .centerCrop().into(taskImage);
-
+        itemView.setBackgroundColor(0);
         Log.d("TaskManagerLog","Image URL:  http://i.imgur.com/"+
                 String.valueOf(task.getMessage())+".jpg");
         this.taskId=taskId;

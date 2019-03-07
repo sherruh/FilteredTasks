@@ -50,5 +50,13 @@ public class MainActivity extends AppCompatActivity implements IOnClickListener 
         fragmentTransaction.addToBackStack(null).commit();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.remove(taskViewFragment);
+        fragmentTransaction.commit();
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frame_layout,recyclerViewFragment);
+        fragmentTransaction.commit();
+    }
 }
