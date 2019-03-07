@@ -2,36 +2,34 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center"
     android:layout_alignLeft="@id/imageView"
     android:layout_centerInParent="true"
-    >
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/vh_task_Title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/check_bx_in_work"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintRight_toLeftOf="@id/check_bx_done"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/check_bx_done"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -46,15 +44,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vh_task_Title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textOfTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -64,27 +61,33 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vh_task_Title"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintRight_toLeftOf="@id/check_bx_in_work"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintStart_toEndOf="@+id/check_bx_in_work"
+        app:layout_constraintTop_toBottomOf="@+id/vh_task_Title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/check_bx_done"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="8dp"
-        android:text="Done"/>
+        android:layout_width="102dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Done"
+        app:layout_constraintBottom_toTopOf="@+id/check_bx_in_work"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/check_bx_in_work"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/check_bx_done"
-        android:text="In Work"/>
+        android:layout_width="109dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="In Work"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
