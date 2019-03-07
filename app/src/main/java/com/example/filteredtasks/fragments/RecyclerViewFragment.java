@@ -16,8 +16,12 @@ import android.widget.Button;
 
 import com.example.filteredtasks.R;
 import com.example.filteredtasks.adapters.TaskAdapter;
+import com.example.filteredtasks.enums.ProblemType;
+import com.example.filteredtasks.enums.Region;
+import com.example.filteredtasks.enums.Technology;
 import com.example.filteredtasks.interfaces.IOnClickListener;
 import com.example.filteredtasks.models.Task;
+import com.example.filteredtasks.serialyzers.JSonWorker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +38,7 @@ public class RecyclerViewFragment extends Fragment  {
     ArrayList<Task> tasks;
     View view;
     IOnClickListener miOnClickListener;
+    JSonWorker jSonWorker;
 
     @Nullable
     @Override
@@ -50,11 +55,14 @@ public class RecyclerViewFragment extends Fragment  {
         taskAdapter=new TaskAdapter(tasks,miOnClickListener );
         recyclerViewTasks.setAdapter(taskAdapter);
         recyclerViewTasks.setItemAnimator(new DefaultItemAnimator());
-
+        jSonWorker=new JSonWorker();
+        jSonWorker.readJSondata(tasks);
     }
 
     public void setTasks() {
        tasks=new ArrayList<>();
+       tasks.add(new Task(false,false,"Nrn_40000","Traffic 10%", ProblemType.EMERGENCY, Technology.UMTS, Region.CHUY));
+       tasks.add(new Task(false,false,"Nrn_40001","Traffic 70%", ProblemType.EMERGENCY, Technology.GSM, Region.CHUY));
     }
 
     public void addTask(Task task){
@@ -68,25 +76,6 @@ public class RecyclerViewFragment extends Fragment  {
 
     public Task getTask(int taskId){
         return tasks.get(taskId);
-    }
-
-    public void createJSondata(){
-        JSONObject jObject = new JSONObject();
-        try
-        {
-            JSONArray jArray = new JSONArray();
-            for (Task task : tasks)
-            {
-                JSONObject studentJSON = new JSONObject();
-                studentJSON.put("", task.));
-                studentJSON.put("age", task.);
-                jArray.put(studentJSON);
-            }
-            jObject.put("StudentList", jArray);
-        } catch (JSONException jse) {
-
-        }
-        Log.d("MyAppLog");
     }
 
 }

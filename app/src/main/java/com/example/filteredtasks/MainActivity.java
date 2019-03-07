@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickListener 
         recyclerViewFragment.setIOnClicklistener(this);
         fragmentTransaction.add(R.id.frame_layout,recyclerViewFragment);
         fragmentTransaction.commit();
-
-        recyclerViewFragment.createJSondata();
     }
 
     @Override
