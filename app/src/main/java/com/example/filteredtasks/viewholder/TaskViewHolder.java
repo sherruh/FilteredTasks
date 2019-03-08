@@ -24,7 +24,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
     int taskId;
     private IOnClickListener miOnClickListener;
 
-    public TaskViewHolder(@NonNull final View itemView, IOnClickListener iOnClickListener) {
+    public TaskViewHolder(@NonNull final View itemView, IOnClickListener iOnClickListener,Task task) {
         super(itemView);
         taskTitle=itemView.findViewById(R.id.vh_task_Title);
         taskDescription=itemView.findViewById(R.id.textOfTask);
@@ -35,13 +35,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                if (checkBoxInWork.isChecked()){
-                    itemView.setBackgroundResource(R.color.colorPrimaryDark);
-                    Log.d("MyAppLog","clicked on checkBox");
-                }else {
-                    itemView.setBackgroundResource(R.color.colorAccent);
-                    Log.d("MyAppLog","clicked unchecked on checkBox");
-                }
+                setColor(checkBoxInWork.isChecked());
             }
         });
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,18 +44,26 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
                 miOnClickListener.clickOnTask(taskId);
             }
         });
+
     }
 
     public void onBind(Task task, int taskId){
         taskDescription.setText(task.getMessage());
         taskTitle.setText(task.getMessage());
+        checkBoxInWork.setChecked(task.isInWork());
+        setColor(task.isInWork());
         Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getMessage())+".jpg").
                 resize(150, 150)
                 .centerCrop().into(taskImage);
-        itemView.setBackgroundColor(0);
         Log.d("TaskManagerLog","Image URL:  http://i.imgur.com/"+
                 String.valueOf(task.getMessage())+".jpg");
         this.taskId=taskId;
     }
-
+    void setColor(boolean inWork){
+        if(inWork){
+            itemView.setBackgroundResource(R.color.colorPrimaryDark);
+        }else {
+            itemView.setBackgroundResource(R.color.colorAccent);
+        }
+    }
 }

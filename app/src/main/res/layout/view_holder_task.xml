@@ -9,7 +9,7 @@
     android:layout_centerHorizontal="true"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@color/colorAccent">
+    >
 
     <TextView
         android:id="@+id/vh_task_Title"
