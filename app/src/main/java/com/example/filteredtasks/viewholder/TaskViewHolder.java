@@ -21,10 +21,12 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
     TextView taskDescription;
     ImageView taskImage;
     CheckBox checkBoxInWork;
+    CheckBox checkBoxDone;
+    Task task;
     int taskId;
     private IOnClickListener miOnClickListener;
 
-    public TaskViewHolder(@NonNull final View itemView, IOnClickListener iOnClickListener,Task task) {
+    public TaskViewHolder(@NonNull final View itemView, IOnClickListener iOnClickListener) {
         super(itemView);
         taskTitle=itemView.findViewById(R.id.vh_task_Title);
         taskDescription=itemView.findViewById(R.id.textOfTask);
@@ -35,7 +37,14 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                setColor(checkBoxInWork.isChecked());
+                setColorInWork(checkBoxInWork.isChecked());
+            }
+        });
+        checkBoxDone=itemView.findViewById(R.id.check_bx_done);
+        checkBoxDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColorDone(checkBoxDone.isChecked());
             }
         });
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -44,14 +53,16 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
                 miOnClickListener.clickOnTask(taskId);
             }
         });
-
     }
 
     public void onBind(Task task, int taskId){
-        taskDescription.setText(task.getMessage());
+        this.task=task;
+        taskDescription.setText(task.getName());
         taskTitle.setText(task.getMessage());
         checkBoxInWork.setChecked(task.isInWork());
-        setColor(task.isInWork());
+        checkBoxDone.setChecked(task.isDone());
+        setColorInWork(task.isInWork());
+        setColorDone(task.isDone());
         Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getMessage())+".jpg").
                 resize(150, 150)
                 .centerCrop().into(taskImage);
@@ -59,11 +70,22 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
                 String.valueOf(task.getMessage())+".jpg");
         this.taskId=taskId;
     }
-    void setColor(boolean inWork){
-        if(inWork){
-            itemView.setBackgroundResource(R.color.colorPrimaryDark);
+
+    private void setColorDone(boolean done) {
+        task.setDone(done);
+        if(done){
+            itemView.setBackgroundResource(R.color.colorGreen);
         }else {
-            itemView.setBackgroundResource(R.color.colorAccent);
+            setColorInWork(task.isInWork());
+        }
+    }
+
+    private void setColorInWork(boolean inWork){
+        task.setInWork(inWork);
+        if(inWork){
+            itemView.setBackgroundResource(R.color.colorYellow);
+        }else {
+            itemView.setBackgroundResource(R.color.colorOrange);
         }
     }
 }

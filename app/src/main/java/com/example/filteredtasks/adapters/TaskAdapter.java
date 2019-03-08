@@ -30,7 +30,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder>  {
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v= LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.view_holder_task,viewGroup,false);
-        TaskViewHolder vh=new TaskViewHolder(v,miOnClickListener,tasks.get(i));
+        TaskViewHolder vh=new TaskViewHolder(v,miOnClickListener);
         Log.d("TaskManagerLog","created "+i);
         return vh;
     }

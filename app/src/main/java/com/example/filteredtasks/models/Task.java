@@ -51,4 +51,12 @@ public class Task {
     public String getMessage() {
         return message;
     }
+
+    public void setInWork(boolean inWork) {
+        this.inWork = inWork;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 }
