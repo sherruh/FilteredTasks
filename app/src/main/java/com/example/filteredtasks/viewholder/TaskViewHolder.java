@@ -57,8 +57,8 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
 
     public void onBind(Task task, int taskId){
         this.task=task;
-        taskDescription.setText(task.getName());
-        taskTitle.setText(task.getMessage());
+        taskDescription.setText(task.getMessage());
+        taskTitle.setText(task.getName());
         checkBoxInWork.setChecked(task.isInWork());
         checkBoxDone.setChecked(task.isDone());
         setColorInWork(task.isInWork());
@@ -74,8 +74,10 @@ public class TaskViewHolder extends RecyclerView.ViewHolder  {
     private void setColorDone(boolean done) {
         task.setDone(done);
         if(done){
+            checkBoxInWork.setClickable(false);
             itemView.setBackgroundResource(R.color.colorGreen);
         }else {
+            checkBoxInWork.setClickable(true);
             setColorInWork(task.isInWork());
         }
     }

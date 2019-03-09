@@ -33,7 +33,7 @@ public class TaskViewFragment extends Fragment {
     }
 
     private void initViewTask(Task task) {
-        taskTitle.setText(task.getMessage());
+        taskTitle.setText(task.getName());
         taskDescription.setText(task.getMessage());
         Picasso.get().load("http://i.imgur.com/"+ String.valueOf(task.getMessage())+".jpg").
                 resize(1000, 1000)
