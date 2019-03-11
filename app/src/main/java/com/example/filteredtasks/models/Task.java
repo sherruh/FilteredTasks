@@ -13,8 +13,8 @@ public class Task {
     private Technology technology;
     private Region region;
 
-
-    public Task(boolean inWork, boolean done, String name, String message, ProblemType problemType, Technology technology, Region region) {
+    public Task(boolean inWork, boolean done, String name, String message, ProblemType problemType,
+                Technology technology, Region region) {
         this.inWork = inWork;
         this.done = done;
         this.name = name;
