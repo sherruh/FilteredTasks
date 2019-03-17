@@ -46,7 +46,8 @@ public class JSonWorker {
         JSONArray myResponse = new JSONObject(response.toString()).getJSONArray("TaskList");
         String jsonTaskList = myResponse.toString();
         Type listType = new TypeToken<List<Task>>(){}.getType();
-        Log.d("MyApp", gson.fromJson(jsonTaskList, listType).toString());
+        List<Task> taskList=gson.fromJson(jsonTaskList, listType);
+        Log.d("MyApp",taskList.get(0).getMessage());
 
     }
 }
