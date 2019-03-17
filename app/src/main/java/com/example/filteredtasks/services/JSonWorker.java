@@ -1,43 +1,35 @@
-package com.example.filteredtasks.serialyzers;
+package com.example.filteredtasks.services;
+
 
 import android.util.Log;
-import android.webkit.WebResourceRequest;
 
-import com.example.filteredtasks.enums.ProblemType;
-import com.example.filteredtasks.enums.Region;
-import com.example.filteredtasks.enums.Technology;
+import com.example.filteredtasks.models.Task;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Writer;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class JSonWorker {
 
     public JSonWorker() throws IOException, JSONException {
-        String url = "https://my-json-server.typicode.com/sherruh/DBJSonFilteredTasks/posts";
+        String url = "https://my-json-server.typicode.com/sherruh/DBJSonFilteredTasks/db";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         // optional default is GET
         //con.setRequestMethod("GET");
         //add request header
-        //con.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+        con.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'GET' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
@@ -50,11 +42,11 @@ public class JSonWorker {
         }
         in.close();
 
-        System.out.println(response.toString());
+        Gson gson = new Gson();
+        JSONArray myResponse = new JSONObject(response.toString()).getJSONArray("TaskList");
+        String jsonTaskList = myResponse.toString();
+        Type listType = new TypeToken<List<Task>>(){}.getType();
+        Log.d("MyApp", gson.fromJson(jsonTaskList, listType).toString());
 
-        JSONObject myResponse = new JSONObject(response.toString());
-        System.out.println("result after Reading JSON Response");
-        System.out.println("statusCode- "+myResponse.getString("id"));
-        System.out.println("statusMessage- "+myResponse.getString("title"));
     }
 }

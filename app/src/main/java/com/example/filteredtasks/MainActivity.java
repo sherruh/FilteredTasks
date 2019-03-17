@@ -1,13 +1,10 @@
 package com.example.filteredtasks;
 
 import android.os.StrictMode;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.filteredtasks.serialyzers.JSonWorker;
+import com.example.filteredtasks.services.JSonWorker;
 
 import org.json.JSONException;
 
