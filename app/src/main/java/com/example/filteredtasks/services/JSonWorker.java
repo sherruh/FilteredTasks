@@ -26,13 +26,9 @@ public class JSonWorker {
         String url = "https://my-json-server.typicode.com/sherruh/DBJSonFilteredTasks/db";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        // optional default is GET
-        //con.setRequestMethod("GET");
-        //add request header
+        con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -41,12 +37,11 @@ public class JSonWorker {
             response.append(inputLine);
         }
         in.close();
-
         Gson gson = new Gson();
         JSONArray jsonArray = new JSONObject(response.toString()).getJSONArray("TaskList");
         String jsonTaskList = jsonArray.toString();
         Type listType = new TypeToken<List<Task>>(){}.getType();
         List<Task> taskList=gson.fromJson(jsonTaskList, listType);
-        Log.d("MyApp",taskList.get(0).getMessage());
+        Log.d("MyApp", String.valueOf(taskList.size()));
     }
 }
