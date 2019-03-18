@@ -17,12 +17,17 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class JSonWorker {
 
-    public JSonWorker() throws IOException, JSONException {
+    public JSonWorker() {
+
+    }
+
+    public ArrayList<Task> getTaskList()throws IOException, JSONException {
         String url = "https://my-json-server.typicode.com/sherruh/DBJSonFilteredTasks/db";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -41,7 +46,8 @@ public class JSonWorker {
         JSONArray jsonArray = new JSONObject(response.toString()).getJSONArray("TaskList");
         String jsonTaskList = jsonArray.toString();
         Type listType = new TypeToken<List<Task>>(){}.getType();
-        List<Task> taskList=gson.fromJson(jsonTaskList, listType);
+        ArrayList<Task> taskList=gson.fromJson(jsonTaskList, listType);
         Log.d("MyApp", String.valueOf(taskList.size()));
+        return taskList;
     }
 }
